@@ -299,8 +299,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const postsContainer = document.getElementById("posts-container");
 
   if (gridViewBtn && listViewBtn && postsContainer) {
-    // Load saved view preference
-    const savedView = localStorage.getItem("posts-view") || "list";
+    // Load saved view preference (default to grid since that's the HTML default)
+    const savedView = localStorage.getItem("posts-view") || "grid";
     applyView(savedView);
 
     gridViewBtn.addEventListener("click", () => {
