@@ -1,4 +1,4 @@
-baseURL = 'https://hunderaweke.github.io/personal-blog/'
+baseURL = 'https://hunderaweke.github.io/thoughts/'
 languageCode = 'en-us'
 title = "THOUGHTS"
 theme = "papyrus"
@@ -26,19 +26,19 @@ canonifyURLs = true
 
 [[menus.main]]
   name = "RESOURCES"
-  url = "/personal-blog/resources/"
+  url = "/thoughts/resources/"
   weight = 20
   pre = "[R]"
 
 [[menus.main]]
   name = "YOUTUBE"
-  url = "/personal-blog/youtube/"
+  url = "/thoughts/youtube/"
   weight = 30
   pre = "[Y]"
 
 [[menus.main]]
   name = "SPIRITUAL"
-  url = "/personal-blog/spiritual/"
+  url = "/thoughts/spiritual/"
   weight = 40
   pre = "[S]"
 
