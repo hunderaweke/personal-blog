@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+    </title>
+
+    {{ $style := resources.Get "css/main.css" | css.PostCSS }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+
+    <script>
+      // Set dark mode permanently
+      (function () {
+        document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.classList.add("dark");
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body
+    class="bg-[#FAFAFA] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-[#F5F5F5] font-sans min-h-screen flex flex-col selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-300"
+  >
+    <header
+      class="fixed top-0 left-0 w-full z-50 bg-[#FAFAFA]/95 dark:bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
+    >
+      <div
+        class="max-w-400 mx-auto px-8 h-[70px] flex items-center justify-between"
+      >
+        <!-- Site Title -->
+        <a
+          href="/"
+          class="font-mono text-sm font-bold tracking-tight text-[#0A0A0A] dark:text-[#F5F5F5] hover:opacity-70 transition-opacity uppercase"
+        >
+          {{ .Site.Title | default "THOUGHTS" }}
+        </a>
+
+        <!-- Main Navigation -->
+        <nav class="flex items-center gap-2">
+          {{ $currentPage := . }} {{ range .Site.Menus.main }} {{ $active := or
+          ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent
+          "main" .) }}
+          <a
+            href="{{ .URL }}"
+            class="{{ if $active }}bg-black text-white border-black dark:bg-white dark:text-black dark:border-white{{ else }}bg-transparent text-gray-500 hover:text-black border-transparent hover:border-gray-300 dark:text-gray-400 dark:hover:text-white dark:hover:border-gray-600{{ end }} px-3 py-1.5 rounded-sm text-[10px] font-mono border transition-all duration-300 ease-out uppercase tracking-wider font-medium"
+          >
+            {{ .Name }}
+          </a>
+          {{ end }}
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Block -->
+    <main class="flex-grow w-full max-w-[1600px] mx-auto px-8 relative pt-24">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="py-12 px-8 text-xs font-mono text-gray-500 dark:text-gray-400 mt-auto"
+    >
+      <span>© {{ now.Year }} {{ .Site.Title }}</span>
+    </footer>
+
+    {{ $js := resources.Get "js/main.js" | js.Build }}
+    <script src="{{ $js.RelPermalink }}"></script>
+  </body>
+</html>

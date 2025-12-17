@@ -1,0 +1,59 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = "THOUGHTS"
+theme = "papyrus"
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = false # Use classes for Tailwind compat
+    style = "monokai" # Fallback, we will override with CSS
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
+
+[params]
+  description = "A digital garden of thoughts and ideas"
+  author = "Hundera"
+
+[[menus.main]]
+  name = "RESOURCES"
+  pageRef = "/resources"
+  weight = 20
+  pre = "[R]"
+
+[[menus.main]]
+  name = "YOUTUBE"
+  pageRef = "/youtube"
+  weight = 30
+  pre = "[Y]"
+
+[[menus.main]]
+  name = "SPIRITUAL"
+  pageRef = "/spiritual"
+  weight = 40
+  pre = "[S]"
+
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.mjs'
+    target = 'css'
+[module]
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'

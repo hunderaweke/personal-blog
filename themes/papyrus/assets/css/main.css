@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Inter", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+}
+
+:root {
+    /* Light Theme (Default) */
+    --bg-primary: #FAFAFA;
+    --text-primary: #0A0A0A;
+    --text-secondary: #4A4A4A;
+    --border-primary: #E0E0E0;
+    --bg-secondary: #F5F5F5;
+    --accent-lime: #ccff00;
+}
+
+[data-theme="dark"] {
+    /* Dark Theme */
+    --bg-primary: #0A0A0A;
+    --text-primary: #F5F5F5;
+    --text-secondary: #B0B0B0;
+    --border-primary: #2A2A2A;
+    --bg-secondary: #1A1A1A;
+    --accent-lime: #ccff00;
+}
+
+@layer base {
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        /* Improve transition smoothness, avoid 'all' */
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+/* Typography Polish */
+.prose {
+    max-width: 65ch;
+    font-size: 1.125rem;
+    /* Slightly larger for elegance */
+    line-height: 1.75;
+}
+
+/* Heading Styles */
+.prose h1 {
+    font-size: 2.25rem;
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+}
+
+.prose h2 {
+    font-size: 1.875rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+}
+
+.prose h3 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.prose h4 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.prose h5,
+.prose h6 {
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.prose p {
+    margin-bottom: 1.5em;
+    color: inherit;
+}
+
+.prose a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    color: inherit;
+}
+
+.prose a:hover {
+    color: var(--text-primary);
+    opacity: 0.7;
+}
+
+/* Code Blocks (Elegant & Monochrome) */
+pre {
+    background-color: var(--bg-secondary) !important;
+    border: 1px solid var(--border-primary);
+    border-radius: 0;
+    padding: 1.5rem;
+    overflow-x: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    margin: 2rem 0;
+    line-height: 1.5;
+    position: relative;
+    color: var(--text-primary);
+}
+
+code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9em;
+    background-color: var(--bg-secondary);
+    padding: 0.1em 0.3em;
+    border-radius: 0;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+/* Syntax Highlighting Overrides (Monochrome) */
+.chroma .k {
+    font-weight: bold;
+    color: inherit;
+}
+
+.chroma .s {
+    color: var(--border-primary);
+    font-style: italic;
+}
+
+.chroma .c,
+.chroma .cm,
+.chroma .c1 {
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+
+/* Footnotes */
+.prose sup {
+    font-size: 0.75em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+.prose sup a {
+    text-decoration: none;
+    color: var(--text-primary);
+    opacity: 0.7;
+    margin-left: 2px;
+    transition: color 0.2s;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.prose sup a:hover {
+    color: var(--text-primary);
+}
+
+.footnotes {
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-primary);
+    padding-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    opacity: 0.7;
+}
+
+.footnotes hr {
+    display: none;
+}
+
+.footnotes ol {
+    list-style-type: decimal;
+    /* Ensure numbers are shown */
+    padding-left: 1.5rem;
+    margin-left: 0;
+}
+
+.footnotes li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    /* Space between number and text */
+}
+
+.footnotes p {
+    margin: 0;
+    display: inline;
+}
+
+/* Tooltip Styles */
+.footnote-tooltip {
+    position: fixed;
+    z-index: 50;
+    max-width: 300px;
+    background: #1A1A1A;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 0;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    pointer-events: none;
+    /* Let clicks pass through */
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.footnote-tooltip.visible {
+    opacity: 1;
+}
+
+/* Table of Contents Styling */
+#TableOfContents ul {
+    list-style: none;
+    /* Explicitly remove bullets */
+    padding: 0;
+    margin: 0;
+}
+
+#TableOfContents li {
+    margin-bottom: 0.5rem;
+}
+
+#TableOfContents a {
+    text-decoration: none;
+    display: block;
+    line-height: 1.4;
+    color: #888;
+    /* Default muted color */
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+    padding-left: 0.75rem;
+    margin-left: -0.75rem;
+    /* Visual offset to keep text aligned but allow border */
+}
+
+#TableOfContents a:hover {
+    color: #FFFFFF;
+}
+
+#TableOfContents ul ul {
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+}
+
+/* Active TOC State */
+#TableOfContents a.active-toc-item {
+    color: #FFFFFF;
+    font-weight: 600;
+    border-left-color: #FFFFFF;
+}
