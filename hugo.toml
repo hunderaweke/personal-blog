@@ -26,19 +26,19 @@ canonifyURLs = true
 
 [[menus.main]]
   name = "RESOURCES"
-  url = "/resources/"
+  url = "/personal-blog/resources/"
   weight = 20
   pre = "[R]"
 
 [[menus.main]]
   name = "YOUTUBE"
-  url = "/youtube/"
+  url = "/personal-blog/youtube/"
   weight = 30
   pre = "[Y]"
 
 [[menus.main]]
   name = "SPIRITUAL"
-  url = "/spiritual/"
+  url = "/personal-blog/spiritual/"
   weight = 40
   pre = "[S]"
 
