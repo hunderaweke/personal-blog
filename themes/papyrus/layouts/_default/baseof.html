@@ -8,23 +8,43 @@
     </title>
 
     <!-- Meta Description -->
-    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-    
+    <meta
+      name="description"
+      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+    />
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+    <meta
+      property="og:type"
+      content="{{ if .IsPage }}article{{ else }}website{{ end }}"
+    />
     <meta property="og:url" content="{{ .Permalink }}" />
-    <meta property="og:title" content="{{ if .IsPage }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
-    <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-    {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}" />{{ end }}
-    
+    <meta
+      property="og:title"
+      content="{{ if .IsPage }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}"
+    />
+    <meta
+      property="og:description"
+      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+    />
+    {{ with .Params.image }}
+    <meta property="og:image" content="{{ . | absURL }}" />
+    {{ end }}
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="{{ .Permalink }}" />
-    <meta name="twitter:title" content="{{ if .IsPage }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
-    <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-    {{ with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}" />{{ end }}
-
-    {{ $style := resources.Get "css/main.css" | css.PostCSS }}
+    <meta
+      name="twitter:title"
+      content="{{ if .IsPage }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}"
+    />
+    <meta
+      name="twitter:description"
+      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+    />
+    {{ with .Params.image }}
+    <meta name="twitter:image" content="{{ . | absURL }}" />
+    {{ end }} {{ $style := resources.Get "css/main.css" | css.PostCSS }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
 
     <script>
